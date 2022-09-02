@@ -25,6 +25,22 @@ variable "audit_log_config" {
   default = {}
 }
 
+variable "major_version_upgrade_config" {
+  type = object({
+    upgrade_type            = string
+    maintenance_window_day  = string
+    maintenance_window_time = string
+  })
+
+  description = "The Major Version Upgrade configuration."
+
+  default = {
+    upgrade_type            = "AUTOMATIC"
+    maintenance_window_day  = "TUESDAY"
+    maintenance_window_time = "WINDOW_12PM_4PM"
+  }
+}
+
 variable "metrics_config" {
   # TODO: enable when Terraform 1.3 is released
   type = object({
