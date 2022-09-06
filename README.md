@@ -2,6 +2,10 @@
 
 This Terraform Module provisions a HashiCorp Vault Cluster.
 
+> **Warning**
+> This module is currently in a **public testing** phase; usage for production workloads is discouraged.
+> Please report any issues and concerns via the [Issues](https://github.com/ksatirli/terraform-hcp-vault-cluster/issues) tab.
+
 ## Table of Contents
 
 <!-- TOC -->
