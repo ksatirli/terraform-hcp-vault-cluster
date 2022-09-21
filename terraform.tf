@@ -8,7 +8,6 @@ terraform {
     }
   }
 
-  # TODO: switch to 1.3.0
   # see https://www.terraform.io/docs/language/settings/index.html#specifying-a-required-terraform-version
-  required_version = ">= 1.2.0"
+  required_version = ">= 1.3.0"
 }
