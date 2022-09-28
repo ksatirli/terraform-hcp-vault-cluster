@@ -28,7 +28,7 @@ resource "hcp_vault_cluster" "main" {
 
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#metrics_config
   # and https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide
-  # and https://www.terraform.io/language/expressions/dynamic-blocks
+  # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "metrics_config" {
     for_each = (var.metrics_config.enabled ? [1] : [])
 
@@ -60,7 +60,7 @@ resource "hcp_vault_cluster" "main" {
   }
 
   lifecycle {
-    # see https://www.terraform.io/language/meta-arguments/lifecycle#prevent_destroy
+    # see https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
     prevent_destroy = true
   }
 }
