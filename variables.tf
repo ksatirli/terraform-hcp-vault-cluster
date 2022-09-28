@@ -66,9 +66,13 @@ variable "metrics_config" {
     #    splunk_token       = null
   }
 
-  # see https://www.terraform.io/language/values/variables#custom-validation-rules
+  # see https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules
   validation {
-    condition     = contains(["us1", "us1-fed", "us3", "us5", "eu1"], var.metrics_config.datadog_region)
+    condition = contains([
+      "us1", "us1-fed", "us3", "us5",
+      "eu1"
+    ], var.metrics_config.datadog_region)
+
     error_message = "The `datadog_region` value must be one of `us1`, `us1-fed`, `us3`, `us5`, or `eu1`."
   }
 }
@@ -109,7 +113,12 @@ variable "tier" {
   default     = "dev"
 
   validation {
-    condition     = contains(["dev", "starter_small", "standard_small", "standard_medium", "standard_large", "plus_small", "plus_medium", "plus_large"], var.tier)
+    condition = contains([
+      "dev",
+      "starter_small", "standard_small", "standard_medium", "standard_large",
+      "plus_small", "plus_medium", "plus_large"
+    ], var.tier)
+
     error_message = "`tier` must be one of `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, or `plus_large`."
   }
 }
