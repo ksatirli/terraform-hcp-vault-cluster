@@ -10,19 +10,28 @@ variable "hvn_id" {
 
 variable "audit_log_config" {
   type = object({
-    #    enabled            = bool
-    #    datadog_api_key    = string #optional(string)
-    #    datadog_region     = string #optional(string)
-    #    grafana_endpoint   = string #optional(string)
-    #    grafana_password   = string #optional(string)
-    #    grafana_user       = string #optional(string)
-    #    splunk_hecendpoint = string #optional(string)
-    #    splunk_token       = string #optional(string)
+    enabled            = bool
+    datadog_api_key    = optional(string)
+    datadog_region     = optional(string)
+    grafana_endpoint   = optional(string)
+    grafana_password   = optional(string)
+    grafana_user       = optional(string)
+    splunk_hecendpoint = optional(string)
+    splunk_token       = optional(string)
   })
 
-  description = "TODO"
+  description = "Complex Object for Audit Log Configuration. Only applied on Clusters that are on a tier higher than `dev`."
 
-  default = {}
+  default = {
+    enabled            = false
+    datadog_api_key    = null
+    datadog_region     = "us1"
+    grafana_endpoint   = null
+    grafana_password   = null
+    grafana_user       = null
+    splunk_hecendpoint = null
+    splunk_token       = null
+  }
 }
 
 variable "major_version_upgrade_config" {
@@ -54,6 +63,7 @@ variable "metrics_config" {
   })
 
   description = "Complex Object for Metrics Configuration. Only applied on Clusters that are on a tier higher than `dev`."
+
   default = {
     enabled            = false
     datadog_api_key    = null
