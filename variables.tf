@@ -42,28 +42,27 @@ variable "major_version_upgrade_config" {
 }
 
 variable "metrics_config" {
-  # TODO: enable when Terraform 1.3 is released
   type = object({
-    enabled         = bool
-    datadog_api_key = string #optional(string)
-    datadog_region  = string #optional(string)
-    #    grafana_endpoint   = string #optional(string)
-    #    grafana_password   = string #optional(string)
-    #    grafana_user       = string #optional(string)
-    #    splunk_hecendpoint = string #optional(string)
-    #    splunk_token       = string #optional(string)
+    enabled            = bool
+    datadog_api_key    = optional(string)
+    datadog_region     = optional(string)
+    grafana_endpoint   = optional(string)
+    grafana_password   = optional(string)
+    grafana_user       = optional(string)
+    splunk_hecendpoint = optional(string)
+    splunk_token       = optional(string)
   })
 
-  description = "Complex Object for Metrics Configuration."
+  description = "Complex Object for Metrics Configuration. Only applied on Clusters that are on a tier higher than `dev`."
   default = {
-    enabled         = false
-    datadog_api_key = null
-    datadog_region  = null
-    #    grafana_endpoint   = null
-    #    grafana_password   = null
-    #    grafana_user       = null
-    #    splunk_hecendpoint = null
-    #    splunk_token       = null
+    enabled            = false
+    datadog_api_key    = null
+    datadog_region     = "us1"
+    grafana_endpoint   = null
+    grafana_password   = null
+    grafana_user       = null
+    splunk_hecendpoint = null
+    splunk_token       = null
   }
 
   # see https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules

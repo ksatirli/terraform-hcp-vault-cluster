@@ -13,7 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         examples:
-          - "examples/basic"
+          - "./examples/basic"
+          - "./examples/metrics-config-datadog"
 
     steps:
       - name: Checkout Repository

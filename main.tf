@@ -30,11 +30,12 @@ resource "hcp_vault_cluster" "main" {
   # and https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide
   # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "metrics_config" {
-    for_each = (var.metrics_config.enabled ? [1] : [])
+    # Metrics Configuration is not allowed on `dev` tier
+    for_each = ((!can(regex("^dev$", var.tier)) && var.metrics_config.enabled) ? [1] : [])
 
     content {
       datadog_api_key = try(var.metrics_config.datadog_api_key, null)
-      datadog_region  = try(var.metrics_config.datadog_region, null)
+      datadog_region  = try(var.metrics_config.datadog_region, "us1")
       #      grafana_endpoint   = try(var.metrics_config.grafana_endpoint, null)
       #      grafana_password   = try(var.metrics_config.grafana_password, null)
       #      grafana_user       = try(var.metrics_config.grafana_user, null)
