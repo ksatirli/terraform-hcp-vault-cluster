@@ -32,7 +32,7 @@ variable "major_version_upgrade_config" {
     maintenance_window_time = string
   })
 
-  description = "The Major Version Upgrade configuration."
+  description = "The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`."
 
   default = {
     upgrade_type            = "AUTOMATIC"
