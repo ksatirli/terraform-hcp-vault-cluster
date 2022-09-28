@@ -21,10 +21,16 @@ resource "hcp_vault_cluster" "main" {
   }
 
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#nestedblock--major_version_upgrade_config
-  major_version_upgrade_config {
-    upgrade_type            = var.major_version_upgrade_config.upgrade_type
-    maintenance_window_day  = var.major_version_upgrade_config.maintenance_window_day
-    maintenance_window_time = var.major_version_upgrade_config.maintenance_window_time
+  dynamic "major_version_upgrade_config" {
+    # Major Version Upgrade configuration may only be set on clusters of STANDARD or PLUS tier
+    # see https://github.com/hashicorp/terraform-provider-hcp/search?&q=only+allowed+for+STANDARD+or+PLUS+clusters
+    for_each = (var.tier != "dev" ? [1] : [])
+
+    content {
+      upgrade_type            = var.major_version_upgrade_config.upgrade_type
+      maintenance_window_day  = var.major_version_upgrade_config.maintenance_window_day
+      maintenance_window_time = var.major_version_upgrade_config.maintenance_window_time
+    }
   }
 
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#metrics_config
@@ -35,13 +41,13 @@ resource "hcp_vault_cluster" "main" {
     for_each = ((!can(regex("^dev$", var.tier)) && var.metrics_config.enabled) ? [1] : [])
 
     content {
-      datadog_api_key = try(var.metrics_config.datadog_api_key, null)
-      datadog_region  = try(var.metrics_config.datadog_region, "us1")
-      #      grafana_endpoint   = try(var.metrics_config.grafana_endpoint, null)
-      #      grafana_password   = try(var.metrics_config.grafana_password, null)
-      #      grafana_user       = try(var.metrics_config.grafana_user, null)
-      #      splunk_hecendpoint = try(var.metrics_config.splunk_hecendpoint, null)
-      #      splunk_token       = try(var.metrics_config.splunk_token, null)
+      datadog_api_key    = try(var.metrics_config.datadog_api_key, null)
+      datadog_region     = try(var.metrics_config.datadog_region, "us1")
+      grafana_endpoint   = try(var.metrics_config.grafana_endpoint, null)
+      grafana_password   = try(var.metrics_config.grafana_password, null)
+      grafana_user       = try(var.metrics_config.grafana_user, null)
+      splunk_hecendpoint = try(var.metrics_config.splunk_hecendpoint, null)
+      splunk_token       = try(var.metrics_config.splunk_token, null)
     }
   }
 
