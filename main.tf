@@ -3,8 +3,8 @@ resource "hcp_vault_cluster" "main" {
   cluster_id = var.cluster_id
   hvn_id     = var.hvn_id
 
-  #  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#audit_log_config
-  #  # and https://www.terraform.io/language/expressions/dynamic-blocks
+  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#audit_log_config
+  # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   #  dynamic "audit_log_config" {
   #    for_each = (var.audit_log_config.enabled ? [1] : [])
   #

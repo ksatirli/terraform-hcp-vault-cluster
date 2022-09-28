@@ -1,7 +1,7 @@
 # retrieve HVN ID of a previously created HVN
 # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/data-sources/hvn
 data "hcp_hvn" "main" {
-  hvn_id = "example"
+  hvn_id = var.hcp_hvn_id
 }
 
 module "hcp_vault" {

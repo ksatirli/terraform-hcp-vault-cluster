@@ -5,7 +5,10 @@ This is a _metrics-config-datadog_ example of the `terraform-hcp-vault-cluster` 
 <!-- BEGIN_TF_DOCS -->
 ### Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| datadog_api_key | Datadog API Key. | `string` | n/a | yes |
+| hcp_hvn_id | HCP HVN Identifier. | `string` | `"example"` | no |
 
 ### Outputs
 
