@@ -44,7 +44,7 @@ variable "major_version_upgrade_config" {
   description = "The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`."
 
   default = {
-    upgrade_type            = "AUTOMATIC"
+    upgrade_type            = "SCHEDULED"
     maintenance_window_day  = "TUESDAY"
     maintenance_window_time = "WINDOW_12PM_4PM"
   }
