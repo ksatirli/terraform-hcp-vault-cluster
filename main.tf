@@ -24,7 +24,7 @@ resource "hcp_vault_cluster" "main" {
   dynamic "major_version_upgrade_config" {
     # Major Version Upgrade configuration may only be set on clusters of STANDARD or PLUS tier
     # see https://github.com/hashicorp/terraform-provider-hcp/search?&q=only+allowed+for+STANDARD+or+PLUS+clusters
-    for_each = (var.tier != "dev" ? [1] : [])
+    for_each = (can(regex("^standard_|^plus_", var.tier)) ? [1] : [])
 
     content {
       upgrade_type            = var.major_version_upgrade_config.upgrade_type
