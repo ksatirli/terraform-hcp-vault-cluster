@@ -6,8 +6,8 @@ resource "hcp_vault_cluster" "main" {
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#audit_log_config
   # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "audit_log_config" {
-    # Metrics Configuration is not allowed on `dev` tier
     for_each = ((!can(regex("^dev$", var.tier)) && var.audit_log_config.enabled) ? [1] : [])
+    # Audit Log Configuration is not allowed on `dev` tier
 
     content {
       datadog_api_key    = try(var.audit_log_config.datadog_api_key, null)
