@@ -6,8 +6,8 @@ resource "hcp_vault_cluster" "main" {
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#audit_log_config
   # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "audit_log_config" {
-    for_each = ((!can(regex("^dev$", var.tier)) && var.audit_log_config.enabled) ? [1] : [])
     # Audit Log Configuration is not allowed on `dev` tier
+    for_each = (var.tier != "dev" && var.audit_log_config.enabled) ? [1] : []
 
     content {
       datadog_api_key    = try(var.audit_log_config.datadog_api_key, null)
@@ -24,7 +24,7 @@ resource "hcp_vault_cluster" "main" {
   dynamic "major_version_upgrade_config" {
     # Major Version Upgrade configuration may only be set on clusters of STANDARD or PLUS tier
     # see https://github.com/hashicorp/terraform-provider-hcp/search?&q=only+allowed+for+STANDARD+or+PLUS+clusters
-    for_each = (can(regex("^standard_|^plus_", var.tier)) ? [1] : [])
+    for_each = (can(startswith("standard_", var.tier) || startswith("plus_", var.tier))) ? [1] : []
 
     content {
       upgrade_type            = var.major_version_upgrade_config.upgrade_type
@@ -38,7 +38,7 @@ resource "hcp_vault_cluster" "main" {
   # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "metrics_config" {
     # Metrics Configuration is not allowed on `dev` tier
-    for_each = ((!can(regex("^dev$", var.tier)) && var.metrics_config.enabled) ? [1] : [])
+    for_each = (var.tier != "dev" && var.metrics_config.enabled) ? [1] : []
 
     content {
       datadog_api_key    = try(var.metrics_config.datadog_api_key, null)
