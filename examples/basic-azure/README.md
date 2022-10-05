@@ -1,6 +1,6 @@
 # Example: `basic`
 
-This is a _basic_ example of the `terraform-hcp-vault-cluster` module.
+This is a _basic_ example of the `terraform-hcp-vault-cluster` module, geared towards Microsoft Azure.
 
 <!-- BEGIN_TF_DOCS -->
 ### Inputs
