@@ -1,13 +1,13 @@
 terraform {
-  # see https://www.terraform.io/docs/language/settings/index.html#specifying-provider-requirements
+  # see https://developer.hashicorp.com/terraform/language/settings#specifying-provider-requirements
   required_providers {
-    # see https://registry.terraform.io/providers/hashicorp/hcp/0.43.0/
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.45.0/
     hcp = {
       source  = "hashicorp/hcp"
-      version = ">= 0.43.0, < 1.0.0"
+      version = ">= 0.45.0, < 1.0.0"
     }
   }
 
-  # see https://www.terraform.io/docs/language/settings/index.html#specifying-a-required-terraform-version
-  required_version = ">= 1.2.0"
+  # see https://developer.hashicorp.com/terraform/language/settings#specifying-a-required-terraform-version
+  required_version = ">= 1.3.0"
 }

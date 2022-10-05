@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/hashicorp/hcp" {
   version     = "0.45.0"
-  constraints = ">= 0.45.0, < 1.0.0"
+  constraints = ">= 0.44.0, < 1.0.0"
   hashes = [
     "h1:ti3aM4JNIh1gtWGqIFEr6rPupLqn/bdgpGv6FbKi/Ts=",
     "zh:0fa82a384b25a58b65523e0ea4768fa1212b1f5cfc0c9379d31162454fedcc9d",

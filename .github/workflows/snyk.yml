@@ -18,6 +18,12 @@ jobs:
           - "./examples/basic/main.tf"
           - "./examples/basic/providers.tf"
           - "./examples/basic/terraform.tf"
+          - "./examples/metrics-config-datadog/main.tf"
+          - "./examples/metrics-config-datadog/providers.tf"
+          - "./examples/metrics-config-datadog/terraform.tf"
+          - "./examples/audit-log-config-datadog/main.tf"
+          - "./examples/audit-log-config-datadog/providers.tf"
+          - "./examples/audit-log-config-datadog/terraform.tf"
 
     steps:
       - name: Checkout Repository

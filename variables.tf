@@ -10,19 +10,28 @@ variable "hvn_id" {
 
 variable "audit_log_config" {
   type = object({
-    #    enabled            = bool
-    #    datadog_api_key    = string #optional(string)
-    #    datadog_region     = string #optional(string)
-    #    grafana_endpoint   = string #optional(string)
-    #    grafana_password   = string #optional(string)
-    #    grafana_user       = string #optional(string)
-    #    splunk_hecendpoint = string #optional(string)
-    #    splunk_token       = string #optional(string)
+    enabled            = bool
+    datadog_api_key    = optional(string)
+    datadog_region     = optional(string)
+    grafana_endpoint   = optional(string)
+    grafana_password   = optional(string)
+    grafana_user       = optional(string)
+    splunk_hecendpoint = optional(string)
+    splunk_token       = optional(string)
   })
 
-  description = "TODO"
+  description = "Complex Object for Audit Log Configuration. Only applied on Clusters that are on a tier higher than `dev`."
 
-  default = {}
+  default = {
+    enabled            = false
+    datadog_api_key    = null
+    datadog_region     = "us1"
+    grafana_endpoint   = null
+    grafana_password   = null
+    grafana_user       = null
+    splunk_hecendpoint = null
+    splunk_token       = null
+  }
 }
 
 variable "major_version_upgrade_config" {
@@ -32,43 +41,47 @@ variable "major_version_upgrade_config" {
     maintenance_window_time = string
   })
 
-  description = "The Major Version Upgrade configuration."
+  description = "The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`."
 
   default = {
-    upgrade_type            = "AUTOMATIC"
+    upgrade_type            = "SCHEDULED"
     maintenance_window_day  = "TUESDAY"
     maintenance_window_time = "WINDOW_12PM_4PM"
   }
 }
 
 variable "metrics_config" {
-  # TODO: enable when Terraform 1.3 is released
   type = object({
-    enabled         = bool
-    datadog_api_key = string #optional(string)
-    datadog_region  = string #optional(string)
-    #    grafana_endpoint   = string #optional(string)
-    #    grafana_password   = string #optional(string)
-    #    grafana_user       = string #optional(string)
-    #    splunk_hecendpoint = string #optional(string)
-    #    splunk_token       = string #optional(string)
+    enabled            = bool
+    datadog_api_key    = optional(string)
+    datadog_region     = optional(string)
+    grafana_endpoint   = optional(string)
+    grafana_password   = optional(string)
+    grafana_user       = optional(string)
+    splunk_hecendpoint = optional(string)
+    splunk_token       = optional(string)
   })
 
-  description = "Complex Object for Metrics Configuration."
+  description = "Complex Object for Metrics Configuration. Only applied on Clusters that are on a tier higher than `dev`."
+
   default = {
-    enabled         = false
-    datadog_api_key = null
-    datadog_region  = null
-    #    grafana_endpoint   = null
-    #    grafana_password   = null
-    #    grafana_user       = null
-    #    splunk_hecendpoint = null
-    #    splunk_token       = null
+    enabled            = false
+    datadog_api_key    = null
+    datadog_region     = "us1"
+    grafana_endpoint   = null
+    grafana_password   = null
+    grafana_user       = null
+    splunk_hecendpoint = null
+    splunk_token       = null
   }
 
-  # see https://www.terraform.io/language/values/variables#custom-validation-rules
+  # see https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules
   validation {
-    condition     = contains(["us1", "us1-fed", "us3", "us5", "eu1"], var.metrics_config.datadog_region)
+    condition = contains([
+      "us1", "us1-fed", "us3", "us5",
+      "eu1"
+    ], var.metrics_config.datadog_region)
+
     error_message = "The `datadog_region` value must be one of `us1`, `us1-fed`, `us3`, `us5`, or `eu1`."
   }
 }
@@ -109,7 +122,12 @@ variable "tier" {
   default     = "dev"
 
   validation {
-    condition     = contains(["dev", "starter_small", "standard_small", "standard_medium", "standard_large", "plus_small", "plus_medium", "plus_large"], var.tier)
+    condition = contains([
+      "dev",
+      "starter_small", "standard_small", "standard_medium", "standard_large",
+      "plus_small", "plus_medium", "plus_large"
+    ], var.tier)
+
     error_message = "`tier` must be one of `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, or `plus_large`."
   }
 }

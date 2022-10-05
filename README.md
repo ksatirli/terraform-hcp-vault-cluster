@@ -2,9 +2,9 @@
 
 This Terraform Module provisions a HashiCorp Vault Cluster.
 
-> **Warning**
+> **Note**
 >
-> This module is currently in a **public testing** phase; usage for production workloads is discouraged.
+> This module is currently in a **public testing** phase; usage for production workloads is encouraged.
 >
 > Please report any issues and concerns via the [Issues](https://github.com/ksatirli/terraform-hcp-vault-cluster/issues) tab.
 
@@ -27,9 +27,13 @@ This Terraform Module provisions a HashiCorp Vault Cluster.
 ## Requirements
 
 * HashiCorp Cloud Platform (HCP) [Account](https://portal.cloud.hashicorp.com/sign-in)
-* Terraform `1.2.x` or newer.
+* Terraform `1.3.x` or newer.
 
 ## Usage
+
+> **Note**
+> This module requires a [Service Principal](https://developer.hashicorp.com/hcp/docs/hcp/admin/service-principals) for HashiCorp Cloud Platform.
+> See the [official documentation](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/guides/auth) for instructions on how to provide these credentials.
 
 For examples, see the [./examples](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/) directory.
 
@@ -41,9 +45,9 @@ For examples, see the [./examples](https://github.com/ksatirli/terraform-hcp-vau
 | cluster_id | The ID of the HCP Vault cluster. | `string` | n/a | yes |
 | hvn_id | The ID of the HVN this HCP Vault cluster is associated to. | `string` | n/a | yes |
 | min_vault_version | The minimum Vault version to use when creating the cluster. | `string` | n/a | yes |
-| audit_log_config | TODO | <pre>object({<br>    #    enabled            = bool<br>    #    datadog_api_key    = string #optional(string)<br>    #    datadog_region     = string #optional(string)<br>    #    grafana_endpoint   = string #optional(string)<br>    #    grafana_password   = string #optional(string)<br>    #    grafana_user       = string #optional(string)<br>    #    splunk_hecendpoint = string #optional(string)<br>    #    splunk_token       = string #optional(string)<br>  })</pre> | `{}` | no |
-| major_version_upgrade_config | The Major Version Upgrade configuration. | <pre>object({<br>    upgrade_type            = string<br>    maintenance_window_day  = string<br>    maintenance_window_time = string<br>  })</pre> | <pre>{<br>  "maintenance_window_day": "TUESDAY",<br>  "maintenance_window_time": "WINDOW_12PM_4PM",<br>  "upgrade_type": "AUTOMATIC"<br>}</pre> | no |
-| metrics_config | Complex Object for Metrics Configuration. | <pre>object({<br>    enabled         = bool<br>    datadog_api_key = string #optional(string)<br>    datadog_region  = string #optional(string)<br>    #    grafana_endpoint   = string #optional(string)<br>    #    grafana_password   = string #optional(string)<br>    #    grafana_user       = string #optional(string)<br>    #    splunk_hecendpoint = string #optional(string)<br>    #    splunk_token       = string #optional(string)<br>  })</pre> | <pre>{<br>  "datadog_api_key": null,<br>  "datadog_region": null,<br>  "enabled": false<br>}</pre> | no |
+| audit_log_config | Complex Object for Audit Log Configuration. Only applied on Clusters that are on a tier higher than `dev`. | <pre>object({<br>    enabled            = bool<br>    datadog_api_key    = optional(string)<br>    datadog_region     = optional(string)<br>    grafana_endpoint   = optional(string)<br>    grafana_password   = optional(string)<br>    grafana_user       = optional(string)<br>    splunk_hecendpoint = optional(string)<br>    splunk_token       = optional(string)<br>  })</pre> | <pre>{<br>  "datadog_api_key": null,<br>  "datadog_region": "us1",<br>  "enabled": false,<br>  "grafana_endpoint": null,<br>  "grafana_password": null,<br>  "grafana_user": null,<br>  "splunk_hecendpoint": null,<br>  "splunk_token": null<br>}</pre> | no |
+| major_version_upgrade_config | The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`. | <pre>object({<br>    upgrade_type            = string<br>    maintenance_window_day  = string<br>    maintenance_window_time = string<br>  })</pre> | <pre>{<br>  "maintenance_window_day": "TUESDAY",<br>  "maintenance_window_time": "WINDOW_12PM_4PM",<br>  "upgrade_type": "SCHEDULED"<br>}</pre> | no |
+| metrics_config | Complex Object for Metrics Configuration. Only applied on Clusters that are on a tier higher than `dev`. | <pre>object({<br>    enabled            = bool<br>    datadog_api_key    = optional(string)<br>    datadog_region     = optional(string)<br>    grafana_endpoint   = optional(string)<br>    grafana_password   = optional(string)<br>    grafana_user       = optional(string)<br>    splunk_hecendpoint = optional(string)<br>    splunk_token       = optional(string)<br>  })</pre> | <pre>{<br>  "datadog_api_key": null,<br>  "datadog_region": "us1",<br>  "enabled": false,<br>  "grafana_endpoint": null,<br>  "grafana_password": null,<br>  "grafana_user": null,<br>  "splunk_hecendpoint": null,<br>  "splunk_token": null<br>}</pre> | no |
 | paths_filter | The performance replication paths filter. | `list(string)` | `null` | no |
 | primary_link | The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup. | `bool` | `null` | no |
 | public_endpoint | Denotes that the cluster has a public endpoint. | `bool` | `false` | no |
@@ -71,7 +75,7 @@ To delete an HCP Vault Cluster, remove it from Terraform state, using the `state
 terraform state rm module.hcp_vault.hcp_vault_cluster.main
 ```
 
-When done, manually carry out destructive lifecycle operations through the [HCP Vault UI](https://portal.cloud.hashicorp.com/services/vault).
+When done, _manually_ carry out destructive lifecycle operations through the [HCP Vault UI](https://portal.cloud.hashicorp.com/services/vault).
 
 ## Author Information
 
