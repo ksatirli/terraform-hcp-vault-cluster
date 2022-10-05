@@ -1,4 +1,4 @@
-# Example: `basic`
+# Example: `basic-azure`
 
 This is a _basic_ example of the `terraform-hcp-vault-cluster` module, geared towards Microsoft Azure.
 
