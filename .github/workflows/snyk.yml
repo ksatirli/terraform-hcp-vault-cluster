@@ -15,9 +15,12 @@ jobs:
         # The Snyk IaC GitHub Action currently only supports single files (via the `file` attribute in `with`).
         # To work around this, a GitHub Actions Strategy is used to provide the files that should be tested.
         terraform_files:
-          - "./examples/basic/main.tf"
-          - "./examples/basic/providers.tf"
-          - "./examples/basic/terraform.tf"
+          - "./examples/basic-aws/main.tf"
+          - "./examples/basic-aws/providers.tf"
+          - "./examples/basic-aws/terraform.tf"
+          - "./examples/basic-azure/main.tf"
+          - "./examples/basic-azure/providers.tf"
+          - "./examples/basic-azure/terraform.tf"
           - "./examples/metrics-config-datadog/main.tf"
           - "./examples/metrics-config-datadog/providers.tf"
           - "./examples/metrics-config-datadog/terraform.tf"
