@@ -2,12 +2,6 @@
 
 This Terraform Module provisions a HashiCorp Vault Cluster.
 
-> **Warning**
->
-> This module is currently in a **public testing** phase; usage for production workloads is discouraged.
->
-> Please report any issues and concerns via the [Issues](https://github.com/ksatirli/terraform-hcp-vault-cluster/issues) tab.
-
 ---
 
 ## Table of Contents
@@ -30,6 +24,10 @@ This Terraform Module provisions a HashiCorp Vault Cluster.
 * Terraform `1.3.x` or newer.
 
 ## Usage
+
+> **Note**
+> This module requires a [Service Principal](https://developer.hashicorp.com/hcp/docs/hcp/admin/service-principals) for HashiCorp Cloud Platform.
+> See the [official documentation](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/guides/auth) for instructions on how to provide these credentials.
 
 For examples, see the [./examples](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/) directory.
 
