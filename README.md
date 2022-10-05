@@ -33,6 +33,7 @@ This Terraform Module provisions a HashiCorp Vault Cluster.
 
 > **Note**
 > This module requires a [Service Principal](https://developer.hashicorp.com/hcp/docs/hcp/admin/service-principals) for HashiCorp Cloud Platform.
+> 
 > See the [official documentation](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/guides/auth) for instructions on how to provide these credentials.
 
 For examples, see the [./examples](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/) directory.
@@ -68,7 +69,7 @@ For examples, see the [./examples](https://github.com/ksatirli/terraform-hcp-vau
 
 ## Notes
 
-This module uses Terraform's `lifecycle` [feature](https://www.terraform.io/language/meta-arguments/lifecycle#prevent_destroy) to prevent destruction of an HCP Vault Cluster when the corresponding Terraform module is removed.
+This module uses Terraform's `lifecycle` [feature](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy) to prevent destruction of an HCP Vault Cluster when the corresponding Terraform module is removed.
 To delete an HCP Vault Cluster, remove it from Terraform state, using the `state rm` command:
 
 ```shell
