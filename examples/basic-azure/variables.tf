@@ -4,12 +4,6 @@ variable "environment" {
   default     = "public"
 }
 
-variable "hcp_hvn_id" {
-  type        = string
-  description = "HCP HVN Identifier."
-  default     = "example"
-}
-
 variable "location" {
   type        = string
   description = "The Azure region in which to operate"
