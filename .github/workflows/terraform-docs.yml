@@ -13,7 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         examples:
-          - "./examples/basic"
+          - "./examples/basic-aws"
+          - "./examples/basic-azure"
           - "./examples/metrics-config-datadog"
           - "./examples/audit-log-config-datadog"
 
