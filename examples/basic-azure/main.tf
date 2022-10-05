@@ -5,5 +5,5 @@ module "hcp_vault" {
   hvn_id            = module.hvn_azure.hcp_hvn.hvn_id
   min_vault_version = "1.11.3"
   public_endpoint   = true
-  tier              = "starter_small"
+  tier              = "dev"
 }
