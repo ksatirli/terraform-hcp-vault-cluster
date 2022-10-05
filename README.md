@@ -69,7 +69,7 @@ To delete an HCP Vault Cluster, remove it from Terraform state, using the `state
 terraform state rm module.hcp_vault.hcp_vault_cluster.main
 ```
 
-When done, manually carry out destructive lifecycle operations through the [HCP Vault UI](https://portal.cloud.hashicorp.com/services/vault).
+When done, _manually_ carry out destructive lifecycle operations through the [HCP Vault UI](https://portal.cloud.hashicorp.com/services/vault).
 
 ## Author Information
 
