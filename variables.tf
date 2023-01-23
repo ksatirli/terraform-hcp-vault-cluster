@@ -91,6 +91,7 @@ variable "metrics_config" {
 variable "min_vault_version" {
   type        = string
   description = "The minimum Vault version to use when creating the cluster."
+  default     = null
 }
 
 # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#paths_filter
