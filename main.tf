@@ -70,5 +70,9 @@ resource "hcp_vault_cluster" "main" {
   lifecycle {
     # see https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
     prevent_destroy = true
+
+    ignore_changes = [
+      major_version_upgrade_config
+    ]
   }
 }
