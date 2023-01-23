@@ -37,8 +37,8 @@ variable "audit_log_config" {
 variable "major_version_upgrade_config" {
   type = object({
     upgrade_type            = string
-    maintenance_window_day  = string
-    maintenance_window_time = string
+    maintenance_window_day  = optional(string)
+    maintenance_window_time = optional(string)
   })
 
   description = "The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`."
