@@ -24,12 +24,12 @@ resource "hcp_vault_cluster" "main" {
   dynamic "major_version_upgrade_config" {
     # Major Version Upgrade configuration may only be set on clusters of STANDARD or PLUS tier
     # see https://github.com/hashicorp/terraform-provider-hcp/search?&q=only+allowed+for+STANDARD+or+PLUS+clusters
-    for_each = (can(startswith("standard_", var.tier) || startswith("plus_", var.tier))) ? ["enabled"] : []
+    for_each = (can(startswith("standard_", var.tier) || startswith("plus_", var.tier)) && var.major_version_upgrade_config != null) ? ["enabled"] : []
 
     content {
-      upgrade_type            = try(var.major_version_upgrade_config.upgrade_type, null)
-      maintenance_window_day  = try(var.major_version_upgrade_config.maintenance_window_day, null)
-      maintenance_window_time = try(var.major_version_upgrade_config.maintenance_window_time, null)
+      upgrade_type            = var.major_version_upgrade_config.upgrade_type
+      maintenance_window_day  = var.major_version_upgrade_config.maintenance_window_day
+      maintenance_window_time = var.major_version_upgrade_config.maintenance_window_time
     }
   }
 
