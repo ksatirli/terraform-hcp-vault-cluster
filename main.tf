@@ -27,9 +27,9 @@ resource "hcp_vault_cluster" "main" {
     for_each = (can(startswith("standard_", var.tier) || startswith("plus_", var.tier))) ? ["enabled"] : []
 
     content {
-      upgrade_type            = var.major_version_upgrade_config.upgrade_type
-      maintenance_window_day  = var.major_version_upgrade_config.maintenance_window_day
-      maintenance_window_time = var.major_version_upgrade_config.maintenance_window_time
+      upgrade_type            = try(var.major_version_upgrade_config.upgrade_type, null)
+      maintenance_window_day  = try(var.major_version_upgrade_config.maintenance_window_day, null)
+      maintenance_window_time = try(var.major_version_upgrade_config.maintenance_window_time, null)
     }
   }
 
