@@ -28,7 +28,7 @@ This Terraform Module provisions a HashiCorp Vault Cluster.
 ## Requirements
 
 * HashiCorp Cloud Platform (HCP) [Account](https://portal.cloud.hashicorp.com/sign-in)
-* Terraform `1.3.x` or newer.
+* Terraform `1.4.0` or newer.
 
 ## Usage
 

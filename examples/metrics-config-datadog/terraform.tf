@@ -9,5 +9,5 @@ terraform {
   }
 
   # see https://developer.hashicorp.com/terraform/language/settings#specifying-a-required-terraform-version
-  required_version = ">= 1.3.0"
+  required_version = ">= 1.4.0"
 }
