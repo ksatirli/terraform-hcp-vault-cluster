@@ -37,14 +37,16 @@ variable "audit_log_config" {
 variable "major_version_upgrade_config" {
   type = object({
     upgrade_type            = string
-    maintenance_window_day  = optional(string)
-    maintenance_window_time = optional(string)
+    maintenance_window_day  = string
+    maintenance_window_time = string
   })
 
   description = "The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`."
 
   default = {
-    upgrade_type = "AUTOMATIC"
+    upgrade_type            = "SCHEDULED"
+    maintenance_window_day  = "TUESDAY"
+    maintenance_window_time = "WINDOW_12PM_4PM"
   }
 }
 
@@ -89,7 +91,6 @@ variable "metrics_config" {
 variable "min_vault_version" {
   type        = string
   description = "The minimum Vault version to use when creating the cluster."
-  default     = null
 }
 
 # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#paths_filter
