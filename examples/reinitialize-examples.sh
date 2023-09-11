@@ -2,7 +2,7 @@
 
 EXAMPLES=(audit-log-config-datadog basic-aws basic-azure metrics-config-datadog)
 
-# this script is designed to be executed from the root of ALL Workloads repositories
+# this script is designed to be executed from the root of ALL examples
 
 # iterate over Terraform Workspaces
 for EXAMPLE in "${EXAMPLES[@]}" ; do
@@ -21,7 +21,7 @@ for EXAMPLE in "${EXAMPLES[@]}" ; do
   fi
 
   # render new version of `README.md`
-  terraform-docs --config=file=../../.terraform-docs.yml .
+  terraform-docs --config=../../.terraform-docs.yml .
 
   # change back into root directory
   cd ../..
