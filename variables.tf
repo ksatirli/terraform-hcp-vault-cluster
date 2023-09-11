@@ -42,10 +42,7 @@ variable "major_version_upgrade_config" {
   })
 
   description = "The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`."
-
-  default = {
-    upgrade_type = "AUTOMATIC"
-  }
+  default     = null
 }
 
 variable "metrics_config" {
