@@ -57,6 +57,7 @@ resource "hcp_vault_cluster" "main" {
   # and https://learn.hashicorp.com/tutorials/vault/paths-filter
   paths_filter    = var.paths_filter
   primary_link    = var.primary_link
+  proxy_endpoint  = var.proxy_endpoint
   public_endpoint = var.public_endpoint
   tier            = var.tier
 

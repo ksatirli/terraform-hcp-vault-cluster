@@ -107,8 +107,9 @@ variable "primary_link" {
 }
 
 variable "proxy_endpoint" {
-  type = string
+  type        = string
   description = "Denotes that the cluster has a proxy endpoint."
+  default     = "DISABLED"
 
   validation {
     condition = contains([
