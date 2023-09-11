@@ -33,7 +33,7 @@ jobs:
           working-dir: "${{ matrix.examples }}"
 
       - name: Initialize TFLint
-        run: tflint --init "./${{ matrix.examples }}"
+        run: tflint --init --chdir "./${{ matrix.examples }}"
 
       - name: Run TFLint
         run: tflint --format=compact "./${{ matrix.examples }}"
