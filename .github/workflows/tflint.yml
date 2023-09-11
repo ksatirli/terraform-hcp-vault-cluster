@@ -36,4 +36,4 @@ jobs:
         run: tflint --init --chdir "./${{ matrix.examples }}"
 
       - name: Run TFLint
-        run: tflint --format=compact "./${{ matrix.examples }}"
+        run: tflint --format=compact --chdir "./${{ matrix.examples }}"
