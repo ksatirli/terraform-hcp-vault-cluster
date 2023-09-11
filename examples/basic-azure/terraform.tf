@@ -1,10 +1,16 @@
 terraform {
   # see https://developer.hashicorp.com/terraform/language/settings#specifying-provider-requirements
   required_providers {
-    # see https://registry.terraform.io/providers/hashicorp/azurerm/3.51.0
+    # see https://registry.terraform.io/providers/hashicorp/azuread/2.41.0
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = ">= 2.41.0, < 3.0.0"
+    }
+
+    # see https://registry.terraform.io/providers/hashicorp/azurerm/3.72.0
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.51.0, < 4.0.0"
+      version = ">= 3.72.0, < 4.0.0"
     }
 
     # see https://registry.terraform.io/providers/hashicorp/hcp/0.69.0/
