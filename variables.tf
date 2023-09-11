@@ -106,6 +106,20 @@ variable "primary_link" {
   default     = null
 }
 
+variable "proxy_endpoint" {
+  type = string
+  description = "Denotes that the cluster has a proxy endpoint."
+
+  validation {
+    condition = contains([
+      "DISABLED",
+      "ENABLED",
+    ], var.proxy_endpoint)
+
+    error_message = "`proxy_endpoint` must be one of `DISABLED` or `ENABLED`."
+  }
+}
+
 # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#schema
 variable "public_endpoint" {
   type        = bool
