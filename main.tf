@@ -10,13 +10,16 @@ resource "hcp_vault_cluster" "main" {
     for_each = (var.tier != "dev" && var.audit_log_config.enabled) ? ["enabled"] : []
 
     content {
-      datadog_api_key    = try(var.audit_log_config.datadog_api_key, null)
-      datadog_region     = try(var.audit_log_config.datadog_region, "us1")
-      grafana_endpoint   = try(var.audit_log_config.grafana_endpoint, null)
-      grafana_password   = try(var.audit_log_config.grafana_password, null)
-      grafana_user       = try(var.audit_log_config.grafana_user, null)
-      splunk_hecendpoint = try(var.audit_log_config.splunk_hecendpoint, null)
-      splunk_token       = try(var.audit_log_config.splunk_token, null)
+      cloudwatch_access_key_id     = try(var.audit_log_config.cloudwatch_access_key_id, null)
+      cloudwatch_region            = try(var.audit_log_config.cloudwatch_region, null)
+      cloudwatch_secret_access_key = try(var.audit_log_config.cloudwatch_secret_access_key, null)
+      datadog_api_key              = try(var.audit_log_config.datadog_api_key, null)
+      datadog_region               = try(var.audit_log_config.datadog_region, "us1")
+      grafana_endpoint             = try(var.audit_log_config.grafana_endpoint, null)
+      grafana_password             = try(var.audit_log_config.grafana_password, null)
+      grafana_user                 = try(var.audit_log_config.grafana_user, null)
+      splunk_hecendpoint           = try(var.audit_log_config.splunk_hecendpoint, null)
+      splunk_token                 = try(var.audit_log_config.splunk_token, null)
     }
   }
 

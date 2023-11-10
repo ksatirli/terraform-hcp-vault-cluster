@@ -10,27 +10,33 @@ variable "hvn_id" {
 
 variable "audit_log_config" {
   type = object({
-    enabled            = bool
-    datadog_api_key    = optional(string)
-    datadog_region     = optional(string)
-    grafana_endpoint   = optional(string)
-    grafana_password   = optional(string)
-    grafana_user       = optional(string)
-    splunk_hecendpoint = optional(string)
-    splunk_token       = optional(string)
+    enabled                      = bool
+    cloudwatch_access_key_id     = optional(string)
+    cloudwatch_region            = optional(string)
+    cloudwatch_secret_access_key = optional(string)
+    datadog_api_key              = optional(string)
+    datadog_region               = optional(string)
+    grafana_endpoint             = optional(string)
+    grafana_password             = optional(string)
+    grafana_user                 = optional(string)
+    splunk_hecendpoint           = optional(string)
+    splunk_token                 = optional(string)
   })
 
   description = "Complex Object for Audit Log Configuration. Only applied on Clusters that are on a tier higher than `dev`."
 
   default = {
-    enabled            = false
-    datadog_api_key    = null
-    datadog_region     = "us1"
-    grafana_endpoint   = null
-    grafana_password   = null
-    grafana_user       = null
-    splunk_hecendpoint = null
-    splunk_token       = null
+    enabled                      = false
+    cloudwatch_access_key_id     = null
+    cloudwatch_region            = null
+    cloudwatch_secret_access_key = null
+    datadog_api_key              = null
+    datadog_region               = "us1"
+    grafana_endpoint             = null
+    grafana_password             = null
+    grafana_user                 = null
+    splunk_hecendpoint           = null
+    splunk_token                 = null
   }
 }
 
@@ -50,27 +56,33 @@ variable "major_version_upgrade_config" {
 
 variable "metrics_config" {
   type = object({
-    enabled            = bool
-    datadog_api_key    = optional(string)
-    datadog_region     = optional(string)
-    grafana_endpoint   = optional(string)
-    grafana_password   = optional(string)
-    grafana_user       = optional(string)
-    splunk_hecendpoint = optional(string)
-    splunk_token       = optional(string)
+    enabled                      = bool
+    cloudwatch_access_key_id     = optional(string)
+    cloudwatch_region            = optional(string)
+    cloudwatch_secret_access_key = optional(string)
+    datadog_api_key              = optional(string)
+    datadog_region               = optional(string)
+    grafana_endpoint             = optional(string)
+    grafana_password             = optional(string)
+    grafana_user                 = optional(string)
+    splunk_hecendpoint           = optional(string)
+    splunk_token                 = optional(string)
   })
 
   description = "Complex Object for Metrics Configuration. Only applied on Clusters that are on a tier higher than `dev`."
 
   default = {
-    enabled            = false
-    datadog_api_key    = null
-    datadog_region     = "us1"
-    grafana_endpoint   = null
-    grafana_password   = null
-    grafana_user       = null
-    splunk_hecendpoint = null
-    splunk_token       = null
+    enabled                      = false
+    cloudwatch_access_key_id     = null
+    cloudwatch_region            = null
+    cloudwatch_secret_access_key = null
+    datadog_api_key              = null
+    datadog_region               = "us1"
+    grafana_endpoint             = null
+    grafana_password             = null
+    grafana_user                 = null
+    splunk_hecendpoint           = null
+    splunk_token                 = null
   }
 
   # see https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules
