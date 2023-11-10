@@ -5,7 +5,7 @@ This Terraform Module provisions a HashiCorp Vault Cluster.
 ## Table of Contents
 
 <!-- TOC -->
-* [HashiCorp Cloud Platform: HCP Vault Cluster](#hashicorp-cloud-platform--hcp-vault-cluster)
+* [HashiCorp Cloud Platform: HCP Vault Cluster](#hashicorp-cloud-platform-hcp-vault-cluster)
   * [Table of Contents](#table-of-contents)
   * [Requirements](#requirements)
   * [Usage](#usage)
