@@ -34,7 +34,7 @@ This Terraform Module provisions a HashiCorp Vault Cluster.
 - Deploy HCP Vault on AWS with [examples/basic-aws](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/basic-aws).
 - Deploy HCP Vault on Microsoft Azure with [examples/basic-azure](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/basic-azure).
 - Deploy HCP Vault with Datadog Audit Logging with [examples/audit-log-config-datadog](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/audit-log-config-datadog).
-- Deploy HCP Vault with Datadog Metrics Config with [examples/audit-log-config-datadog](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/metrics-config-datadog).
+- Deploy HCP Vault with Datadog Metrics Config with [examples/metrics-config-datadog](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/metrics-config-datadog).
 
 For additional examples, see the [./examples](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/) directory.
 
