@@ -81,16 +81,6 @@ variable "metrics_config" {
     splunk_hecendpoint           = null
     splunk_token                 = null
   }
-
-  # see https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules
-  validation {
-    condition = contains([
-      "us1", "us1-fed", "us3", "us5",
-      "eu1"
-    ], var.metrics_config.datadog_region)
-
-    error_message = "The `datadog_region` value must be one of `us1`, `us1-fed`, `us3`, `us5`, or `eu1`."
-  }
 }
 
 # HCP Vault versions trail behind OSS versions of Vault for security and maintenance reasons
