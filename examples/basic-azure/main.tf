@@ -3,7 +3,7 @@ module "hcp_vault" {
 
   cluster_id        = "simple-example"
   hvn_id            = module.hvn_azure.hcp_hvn.hvn_id
-  min_vault_version = "1.12.2"
+  min_vault_version = "1.14.1"
   public_endpoint   = true
   tier              = "dev"
 }

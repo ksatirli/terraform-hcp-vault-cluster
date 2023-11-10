@@ -2,21 +2,21 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/hcp" {
-  version     = "0.56.0"
-  constraints = ">= 0.56.0, < 1.0.0"
+  version     = "0.76.0"
+  constraints = ">= 0.69.0, >= 0.76.0, < 1.0.0"
   hashes = [
-    "h1:zk2mP5g0S4lLkRsPjwoU/E+syacqHQnVowbeERHvglg=",
-    "zh:0fa82a384b25a58b65523e0ea4768fa1212b1f5cfc0c9379d31162454fedcc9d",
-    "zh:3ea6e4a628a5e41b202539555a6359398d48dabb22cf33b1c0a15f951920ebff",
-    "zh:5205c2225c9c226ae3068ed4d45d6b109e5cea2bc27defc150ee512d263607a6",
-    "zh:521f20cbf7812cb9d11c13441b34ecb0871e395fe16079e4b954e24aa77728ae",
-    "zh:71be8f268a8a89dc371ab9d7f226eddb3e95a3bdcef4ce91e75c8b8aae45ae1b",
-    "zh:77168ce18c157a093f9c8e7adabd9e5d92a46c930fc0542f388f99c2a394cd09",
-    "zh:7c8138ea012cfc243276ccc86640fff69252c3094b568a8694a0befe698a5309",
-    "zh:863b84aa88bb8989ccae0e10b60238d1c54b7217fddce7bb7d06bad5ba7c5800",
-    "zh:cc6d086d8eb1eebd7527a7b90b4e02c00386e49cde596ad6952aad7d080c2bd8",
-    "zh:d9c871d3fba781ec14c62871bbfb257948ad1ef4c204814cc19438aaf3e65e09",
-    "zh:de339e872670f590789f29c1543fd3528ef128d06a728a0b3c039be7764eb68f",
-    "zh:ea84e1bf2c5ba55a21d8f08d861d90a88a2db6ada9543097df18e4ccc1a6952d",
+    "h1:Plg6Qg44zmm5qVneJ7cN9lQumV64IIaw4+vAdChZ0XM=",
+    "zh:2ba4d89d2a222f108c745d5b176c5badea30e6e0ebe2ddc3b52296f3730119b8",
+    "zh:3a8aae08c3ce26f3c4de89d2a0fb8f548c9b85bdb49e0abc5e9e0a2c2231a669",
+    "zh:3ff64c5cd0beb9996f554f7ae3b508fbdde5ca3b9f0352e2ad0e08a619679ae4",
+    "zh:541d4532c875b2ee7ecb98da9a1461e76788893b623b0adf7c634d9fff7770e3",
+    "zh:76add99683045b789f331ed5ff348625a03755d71a5b9eb7e5ca62ae61e3f532",
+    "zh:81014ddb04471ecfbb3a2c913c7b0eeba888038daaa718e9a0860f91f7adbb61",
+    "zh:8dac4dc7b3f11d56ce71edf3ea8cbb3b691a5a04ea516864999fdd3851417660",
+    "zh:b33b86d8ad0cd4e1884a9ae67edcf07fe3aebbd1e4768ad460d9c9c9d5d08ba5",
+    "zh:e96a8b52f7788db0260ee3594686a81b8908b0b423f14be80da0407071ee52f1",
+    "zh:f47138d0a56646b6510f69f81de12e571b19a403e23b65001132a96fbd3bc266",
+    "zh:f709466ace3f1dee9b8c7c8ff466320c26e8c16ba0e7861af63b363b54210831",
+    "zh:f8ae395f35a1070fb4c30f24a1d63fe0b96caecff876ae6980c377d6e191eabb",
   ]
 }

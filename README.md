@@ -2,18 +2,10 @@
 
 This Terraform Module provisions a HashiCorp Vault Cluster.
 
-> **Note**
->
-> This module is currently in a **public testing** phase; usage for production workloads is encouraged.
->
-> Please report any issues and concerns via the [Issues](https://github.com/ksatirli/terraform-hcp-vault-cluster/issues) tab.
-
----
-
 ## Table of Contents
 
 <!-- TOC -->
-* [HashiCorp Cloud Platform: HCP Vault Cluster](#hashicorp-cloud-platform--hcp-vault-cluster)
+* [HashiCorp Cloud Platform: HCP Vault Cluster](#hashicorp-cloud-platform-hcp-vault-cluster)
   * [Table of Contents](#table-of-contents)
   * [Requirements](#requirements)
   * [Usage](#usage)
@@ -28,7 +20,7 @@ This Terraform Module provisions a HashiCorp Vault Cluster.
 ## Requirements
 
 * HashiCorp Cloud Platform (HCP) [Account](https://portal.cloud.hashicorp.com/sign-in)
-* Terraform `1.4.0` or newer.
+* Terraform `1.3.0` or newer.
 
 ## Usage
 
@@ -41,6 +33,8 @@ This Terraform Module provisions a HashiCorp Vault Cluster.
 
 - Deploy HCP Vault on AWS with [examples/basic-aws](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/basic-aws).
 - Deploy HCP Vault on Microsoft Azure with [examples/basic-azure](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/basic-azure).
+- Deploy HCP Vault with Datadog Audit Logging with [examples/audit-log-config-datadog](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/audit-log-config-datadog).
+- Deploy HCP Vault with Datadog Metrics Config with [examples/audit-log-config-datadog](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/metrics-config-datadog).
 
 For additional examples, see the [./examples](https://github.com/ksatirli/terraform-hcp-vault-cluster/tree/main/examples/) directory.
 
@@ -52,11 +46,12 @@ For additional examples, see the [./examples](https://github.com/ksatirli/terraf
 | cluster_id | The ID of the HCP Vault cluster. | `string` | n/a | yes |
 | hvn_id | The ID of the HVN this HCP Vault cluster is associated to. | `string` | n/a | yes |
 | audit_log_config | Complex Object for Audit Log Configuration. Only applied on Clusters that are on a tier higher than `dev`. | <pre>object({<br>    enabled            = bool<br>    datadog_api_key    = optional(string)<br>    datadog_region     = optional(string)<br>    grafana_endpoint   = optional(string)<br>    grafana_password   = optional(string)<br>    grafana_user       = optional(string)<br>    splunk_hecendpoint = optional(string)<br>    splunk_token       = optional(string)<br>  })</pre> | <pre>{<br>  "datadog_api_key": null,<br>  "datadog_region": "us1",<br>  "enabled": false,<br>  "grafana_endpoint": null,<br>  "grafana_password": null,<br>  "grafana_user": null,<br>  "splunk_hecendpoint": null,<br>  "splunk_token": null<br>}</pre> | no |
-| major_version_upgrade_config | The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`. | <pre>object({<br>    upgrade_type            = string<br>    maintenance_window_day  = optional(string)<br>    maintenance_window_time = optional(string)<br>  })</pre> | <pre>{<br>  "upgrade_type": "AUTOMATIC"<br>}</pre> | no |
+| major_version_upgrade_config | The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`. | <pre>object({<br>    upgrade_type            = string<br>    maintenance_window_day  = optional(string)<br>    maintenance_window_time = optional(string)<br>  })</pre> | `null` | no |
 | metrics_config | Complex Object for Metrics Configuration. Only applied on Clusters that are on a tier higher than `dev`. | <pre>object({<br>    enabled            = bool<br>    datadog_api_key    = optional(string)<br>    datadog_region     = optional(string)<br>    grafana_endpoint   = optional(string)<br>    grafana_password   = optional(string)<br>    grafana_user       = optional(string)<br>    splunk_hecendpoint = optional(string)<br>    splunk_token       = optional(string)<br>  })</pre> | <pre>{<br>  "datadog_api_key": null,<br>  "datadog_region": "us1",<br>  "enabled": false,<br>  "grafana_endpoint": null,<br>  "grafana_password": null,<br>  "grafana_user": null,<br>  "splunk_hecendpoint": null,<br>  "splunk_token": null<br>}</pre> | no |
 | min_vault_version | The minimum Vault version to use when creating the cluster. | `string` | `null` | no |
 | paths_filter | The performance replication paths filter. | `list(string)` | `null` | no |
 | primary_link | The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup. | `bool` | `null` | no |
+| proxy_endpoint | Denotes that the cluster has a proxy endpoint. | `string` | `"DISABLED"` | no |
 | public_endpoint | Denotes that the cluster has a public endpoint. | `bool` | `false` | no |
 | tier | Tier of the HCP Vault cluster. | `string` | `"dev"` | no |
 | timeouts | Amount of time (in minutes) that can elapse, before an operation is considered timed-out. | <pre>object({<br>    create  = string<br>    default = string<br>    delete  = string<br>    update  = string<br>  })</pre> | <pre>{<br>  "create": "35m",<br>  "default": "5m",<br>  "delete": "25m",<br>  "update": "35m"<br>}</pre> | no |
