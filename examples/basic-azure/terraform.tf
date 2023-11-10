@@ -7,10 +7,10 @@ terraform {
       version = ">= 2.41.0, < 3.0.0"
     }
 
-    # see https://registry.terraform.io/providers/hashicorp/azurerm/3.72.0
+    # see https://registry.terraform.io/providers/hashicorp/azurerm/3.80.0
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.72.0, < 4.0.0"
+      version = ">= 3.80.0, < 4.0.0"
     }
 
     # see https://registry.terraform.io/providers/hashicorp/hcp/0.76.0/
