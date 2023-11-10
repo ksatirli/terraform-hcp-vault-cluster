@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EXAMPLES=(audit-log-config-datadog basic-aws basic-azure metrics-config-datadog)
+EXAMPLES=(audit-log-config-datadog basic-aws basic-azure metrics-config-cloudwatch metrics-config-datadog)
 
 # this script is designed to be executed from the root of ALL examples
 
