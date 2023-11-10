@@ -48,10 +48,7 @@ variable "major_version_upgrade_config" {
   })
 
   description = "The Major Version Upgrade configuration. Only applied on Clusters of tier `standard_`, or `plus_`."
-
-  default = {
-    upgrade_type = "AUTOMATIC"
-  }
+  default     = null
 }
 
 variable "metrics_config" {
@@ -116,6 +113,21 @@ variable "primary_link" {
   type        = bool
   description = "The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup."
   default     = null
+}
+
+variable "proxy_endpoint" {
+  type        = string
+  description = "Denotes that the cluster has a proxy endpoint."
+  default     = "DISABLED"
+
+  validation {
+    condition = contains([
+      "DISABLED",
+      "ENABLED",
+    ], var.proxy_endpoint)
+
+    error_message = "`proxy_endpoint` must be one of `DISABLED` or `ENABLED`."
+  }
 }
 
 # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#schema
