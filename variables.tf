@@ -139,7 +139,7 @@ variable "tier" {
       "dev",
       "starter_small", "standard_small", "standard_medium", "standard_large",
       "plus_small", "plus_medium", "plus_large"
-    ], var.tier)
+    ], lower(var.tier))
 
     error_message = "`tier` must be one of `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, or `plus_large`."
   }
