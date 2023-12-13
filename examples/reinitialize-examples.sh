@@ -1,10 +1,10 @@
 #!/bin/bash
 
-EXAMPLES=(audit-log-config-datadog basic-aws basic-azure metrics-config-datadog)
+# this script is designed to be executed from the root of the module
 
-# this script is designed to be executed from the root of ALL examples
+EXAMPLES=(audit-log-config-cloudwatch audit-log-config-datadog basic-aws basic-azure metrics-config-cloudwatch metrics-config-datadog)
 
-# iterate over Terraform Workspaces
+# iterate over module examples
 for EXAMPLE in "${EXAMPLES[@]}" ; do
 
   # change into Workspace directory
