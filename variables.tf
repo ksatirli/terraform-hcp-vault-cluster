@@ -30,14 +30,29 @@ variable "audit_log_config" {
   }
 }
 
+variable "cluster_id" {
+  type        = string
+  description = "The ID of the HCP Vault cluster."
+}
+
 variable "hvn_id" {
   type        = string
   description = "The ID of the HVN this HCP Vault cluster is associated to."
 }
 
-variable "cluster_id" {
-  type        = string
-  description = "The ID of the HCP Vault cluster."
+variable "ip_allowlist" {
+  type = list(object({
+    address     = string
+    description = string
+  }))
+
+  description = "Allowed IPV4 address ranges (CIDRs) for inbound traffic. Each entry must be a unique CIDR."
+  default     = []
+
+  validation {
+    condition     = length(var.ip_allowlist) > 50
+    error_message = "`ip_allowlist` must be at most 50 entries."
+  }
 }
 
 variable "major_version_upgrade_config" {
@@ -103,6 +118,11 @@ variable "primary_link" {
   type        = bool
   description = "The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup."
   default     = null
+}
+
+variable "project_id" {
+  type        = string
+  description = "The ID of the HCP project where the Vault cluster is located."
 }
 
 variable "proxy_endpoint" {

@@ -23,6 +23,8 @@ resource "hcp_vault_cluster" "main" {
     }
   }
 
+  ip_allowlist = var.ip_allowlist
+
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#nestedblock--major_version_upgrade_config
   dynamic "major_version_upgrade_config" {
     # Major Version Upgrade configuration may only be set on clusters of STANDARD or PLUS tier
@@ -63,6 +65,7 @@ resource "hcp_vault_cluster" "main" {
   # and https://developer.hashicorp.com/vault/tutorials/enterprise/paths-filter
   paths_filter    = var.paths_filter
   primary_link    = var.primary_link
+  project_id      = var.project_id
   proxy_endpoint  = var.proxy_endpoint
   public_endpoint = var.public_endpoint
   tier            = var.tier
