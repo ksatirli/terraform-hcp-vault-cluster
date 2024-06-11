@@ -92,7 +92,7 @@ variable "min_vault_version" {
 }
 
 # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#paths_filter
-# and https://learn.hashicorp.com/tutorials/vault/paths-filter
+# and https://developer.hashicorp.com/vault/tutorials/enterprise/paths-filter
 variable "paths_filter" {
   type        = list(string)
   description = "The performance replication paths filter."

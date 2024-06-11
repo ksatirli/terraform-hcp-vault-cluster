@@ -37,7 +37,7 @@ resource "hcp_vault_cluster" "main" {
   }
 
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#metrics_config
-  # and https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide
+  # and https://developer.hashicorp.com/hcp/docs/vault/logs-metrics
   # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "metrics_config" {
     # Metrics Configuration is not allowed on `dev` tier
@@ -60,7 +60,7 @@ resource "hcp_vault_cluster" "main" {
   min_vault_version = var.min_vault_version
 
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#paths_filter
-  # and https://learn.hashicorp.com/tutorials/vault/paths-filter
+  # and https://developer.hashicorp.com/vault/tutorials/enterprise/paths-filter
   paths_filter    = var.paths_filter
   primary_link    = var.primary_link
   proxy_endpoint  = var.proxy_endpoint
