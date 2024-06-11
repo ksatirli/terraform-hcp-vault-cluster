@@ -14,10 +14,12 @@ jobs:
       fail-fast: false
       matrix:
         examples:
+          - "./examples/audit-log-config-cloudwatch"
+          - "./examples/audit-log-config-datadog"
           - "./examples/basic-aws"
           - "./examples/basic-azure"
+          - "./examples/metrics-config-cloudwatch"
           - "./examples/metrics-config-datadog"
-          - "./examples/audit-log-config-datadog"
 
     steps:
       - name: Checkout Repository

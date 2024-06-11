@@ -13,10 +13,12 @@ jobs:
       fail-fast: false
       matrix:
         examples:
+          - "./examples/audit-log-config-cloudwatch"
+          - "./examples/audit-log-config-datadog"
           - "./examples/basic-aws"
           - "./examples/basic-azure"
+          - "./examples/metrics-config-cloudwatch"
           - "./examples/metrics-config-datadog"
-          - "./examples/audit-log-config-datadog"
 
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +26,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Render documentation for Module and push changes back to branch
-        uses: terraform-docs/gh-actions@v1.0.0
+        uses: terraform-docs/gh-actions@v1.2.0
         with:
           config-file: ".terraform-docs.yml"
           output-file: "README.md"
@@ -33,7 +35,7 @@ jobs:
           working-dir: "./"
 
       - name: Render documentation for Examples and push changes back to branch
-        uses: terraform-docs/gh-actions@v1.0.0
+        uses: terraform-docs/gh-actions@v1.2.0
         with:
           config-file: "../../.terraform-docs.yml"
           output-file: "README.md"
