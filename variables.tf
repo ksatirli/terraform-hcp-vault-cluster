@@ -1,13 +1,3 @@
-variable "cluster_id" {
-  type        = string
-  description = "The ID of the HCP Vault cluster."
-}
-
-variable "hvn_id" {
-  type        = string
-  description = "The ID of the HVN this HCP Vault cluster is associated to."
-}
-
 variable "audit_log_config" {
   type = object({
     enabled                      = bool
@@ -38,6 +28,16 @@ variable "audit_log_config" {
     splunk_hecendpoint           = null
     splunk_token                 = null
   }
+}
+
+variable "hvn_id" {
+  type        = string
+  description = "The ID of the HVN this HCP Vault cluster is associated to."
+}
+
+variable "cluster_id" {
+  type        = string
+  description = "The ID of the HCP Vault cluster."
 }
 
 variable "major_version_upgrade_config" {
@@ -83,7 +83,7 @@ variable "metrics_config" {
   }
 }
 
-# HCP Vault versions trail behind OSS versions of Vault for security and maintenance reasons
+# HCP Vault versions trail behind CE versions of Vault for security and maintenance reasons
 # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#schema
 variable "min_vault_version" {
   type        = string
