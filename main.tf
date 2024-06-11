@@ -23,7 +23,15 @@ resource "hcp_vault_cluster" "main" {
     }
   }
 
-  ip_allowlist = var.ip_allowlist
+  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#ip_allowlist
+  dynamic "ip_allowlist" {
+    for_each = var.ip_allowlist
+
+    content {
+      address     = ip_allowlist.value.address
+      description = ip_allowlist.value.description
+    }
+  }
 
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#nestedblock--major_version_upgrade_config
   dynamic "major_version_upgrade_config" {
