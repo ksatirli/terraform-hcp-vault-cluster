@@ -10,16 +10,47 @@ resource "hcp_vault_cluster" "main" {
     for_each = (var.tier != "dev" && var.audit_log_config.enabled) ? ["enabled"] : []
 
     content {
-      cloudwatch_access_key_id     = try(var.audit_log_config.cloudwatch_access_key_id, null)
-      cloudwatch_region            = try(var.audit_log_config.cloudwatch_region, null)
-      cloudwatch_secret_access_key = try(var.audit_log_config.cloudwatch_secret_access_key, null)
-      datadog_api_key              = try(var.audit_log_config.datadog_api_key, null)
-      datadog_region               = try(var.audit_log_config.datadog_region, "us1")
-      grafana_endpoint             = try(var.audit_log_config.grafana_endpoint, null)
-      grafana_password             = try(var.audit_log_config.grafana_password, null)
-      grafana_user                 = try(var.audit_log_config.grafana_user, null)
-      splunk_hecendpoint           = try(var.audit_log_config.splunk_hecendpoint, null)
-      splunk_token                 = try(var.audit_log_config.splunk_token, null)
+      cloudwatch_access_key_id     = try(var.metrics_config.cloudwatch_access_key_id, null)
+      cloudwatch_region            = try(var.metrics_config.cloudwatch_region, null)
+      cloudwatch_secret_access_key = try(var.metrics_config.cloudwatch_secret_access_key, null)
+
+      datadog_api_key = try(var.metrics_config.datadog_api_key, null)
+      datadog_region  = try(var.metrics_config.datadog_region, "us1")
+
+      elasticsearch_endpoint = try(var.metrics_config.elasticsearch_endpoint, null)
+      elasticsearch_password = try(var.metrics_config.elasticsearch_password, null)
+
+      grafana_endpoint = try(var.metrics_config.grafana_endpoint, null)
+      grafana_password = try(var.metrics_config.grafana_password, null)
+      grafana_user     = try(var.metrics_config.grafana_user, null)
+
+      http_basic_password = try(var.metrics_config.http_basic_password, null)
+      http_basic_user     = try(var.metrics_config.http_basic_user, null)
+      http_bearer_token   = try(var.metrics_config.http_bearer_token, null)
+      http_codec          = try(var.metrics_config.http_codec, null)
+      http_compression    = try(var.metrics_config.http_compression, null)
+      http_headers        = try(var.metrics_config.http_headers, null)
+      http_method         = try(var.metrics_config.http_method, null)
+      http_payload_prefix = try(var.metrics_config.http_payload_prefix, null)
+      http_payload_suffix = try(var.metrics_config.http_payload_suffix, null)
+      http_uri            = try(var.metrics_config.http_uri, null)
+
+      newrelic_account_id  = try(var.metrics_config.newrelic_account_id)
+      newrelic_license_key = try(var.metrics_config.newrelic_license_key)
+      newrelic_region      = try(var.metrics_config.newrelic_region, "US")
+
+      splunk_hecendpoint = try(var.metrics_config.splunk_hecendpoint, null)
+      splunk_token       = try(var.metrics_config.splunk_token, null)
+    }
+  }
+
+  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#ip_allowlist
+  dynamic "ip_allowlist" {
+    for_each = var.ip_allowlist
+
+    content {
+      address     = ip_allowlist.value.address
+      description = ip_allowlist.value.description
     }
   }
 
@@ -37,7 +68,7 @@ resource "hcp_vault_cluster" "main" {
   }
 
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#metrics_config
-  # and https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide
+  # and https://developer.hashicorp.com/hcp/docs/vault/logs-metrics
   # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "metrics_config" {
     # Metrics Configuration is not allowed on `dev` tier
@@ -47,22 +78,44 @@ resource "hcp_vault_cluster" "main" {
       cloudwatch_access_key_id     = try(var.metrics_config.cloudwatch_access_key_id, null)
       cloudwatch_region            = try(var.metrics_config.cloudwatch_region, null)
       cloudwatch_secret_access_key = try(var.metrics_config.cloudwatch_secret_access_key, null)
-      datadog_api_key              = try(var.metrics_config.datadog_api_key, null)
-      datadog_region               = try(var.metrics_config.datadog_region, "us1")
-      grafana_endpoint             = try(var.metrics_config.grafana_endpoint, null)
-      grafana_password             = try(var.metrics_config.grafana_password, null)
-      grafana_user                 = try(var.metrics_config.grafana_user, null)
-      splunk_hecendpoint           = try(var.metrics_config.splunk_hecendpoint, null)
-      splunk_token                 = try(var.metrics_config.splunk_token, null)
+
+      datadog_api_key = try(var.metrics_config.datadog_api_key, null)
+      datadog_region  = try(var.metrics_config.datadog_region, "us1")
+
+      elasticsearch_endpoint = try(var.metrics_config.elasticsearch_endpoint, null)
+      elasticsearch_password = try(var.metrics_config.elasticsearch_password, null)
+
+      grafana_endpoint = try(var.metrics_config.grafana_endpoint, null)
+      grafana_password = try(var.metrics_config.grafana_password, null)
+      grafana_user     = try(var.metrics_config.grafana_user, null)
+
+      http_basic_password = try(var.metrics_config.http_basic_password, null)
+      http_basic_user     = try(var.metrics_config.http_basic_user, null)
+      http_bearer_token   = try(var.metrics_config.http_bearer_token, null)
+      http_codec          = try(var.metrics_config.http_codec, null)
+      http_compression    = try(var.metrics_config.http_compression, null)
+      http_headers        = try(var.metrics_config.http_headers, null)
+      http_method         = try(var.metrics_config.http_method, null)
+      http_payload_prefix = try(var.metrics_config.http_payload_prefix, null)
+      http_payload_suffix = try(var.metrics_config.http_payload_suffix, null)
+      http_uri            = try(var.metrics_config.http_uri, null)
+
+      newrelic_account_id  = try(var.metrics_config.newrelic_account_id)
+      newrelic_license_key = try(var.metrics_config.newrelic_license_key)
+      newrelic_region      = try(var.metrics_config.newrelic_region, "US")
+
+      splunk_hecendpoint = try(var.metrics_config.splunk_hecendpoint, null)
+      splunk_token       = try(var.metrics_config.splunk_token, null)
     }
   }
 
   min_vault_version = var.min_vault_version
 
   # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#paths_filter
-  # and https://learn.hashicorp.com/tutorials/vault/paths-filter
+  # and https://developer.hashicorp.com/vault/tutorials/enterprise/paths-filter
   paths_filter    = var.paths_filter
   primary_link    = var.primary_link
+  project_id      = var.project_id
   proxy_endpoint  = var.proxy_endpoint
   public_endpoint = var.public_endpoint
   tier            = var.tier

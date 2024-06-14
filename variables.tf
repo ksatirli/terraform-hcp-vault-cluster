@@ -1,33 +1,89 @@
 variable "audit_log_config" {
   type = object({
-    enabled                      = bool
+    enabled = bool
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#cloudwatch_access_key_id
     cloudwatch_access_key_id     = optional(string)
     cloudwatch_region            = optional(string)
     cloudwatch_secret_access_key = optional(string)
-    datadog_api_key              = optional(string)
-    datadog_region               = optional(string)
-    grafana_endpoint             = optional(string)
-    grafana_password             = optional(string)
-    grafana_user                 = optional(string)
-    splunk_hecendpoint           = optional(string)
-    splunk_token                 = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#datadog_api_key
+    datadog_api_key = optional(string)
+    datadog_region  = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#elasticsearch_endpoint
+    elasticsearch_endpoint = optional(string)
+    elasticsearch_password = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#grafana_endpoint
+    grafana_endpoint = optional(string)
+    grafana_password = optional(string)
+    grafana_user     = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#http_basic_password
+    http_basic_password = optional(string)
+    http_basic_user     = optional(string)
+    http_bearer_token   = optional(string)
+    http_codec          = optional(string)
+    http_compression    = optional(bool)
+    http_headers        = optional(map(string))
+    http_method         = optional(string)
+    http_payload_prefix = optional(string)
+    http_payload_suffix = optional(string)
+    http_uri            = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#newrelic_account_id
+    newrelic_account_id  = optional(string)
+    newrelic_license_key = optional(string)
+    newrelic_region      = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#splunk_hecendpoint
+    splunk_hecendpoint = optional(string)
+    splunk_token       = optional(string)
   })
 
   description = "Complex Object for Audit Log Configuration. Only applied on Clusters that are on a tier higher than `dev`."
 
   default = {
-    enabled                      = false
+    enabled = false
+
     cloudwatch_access_key_id     = null
     cloudwatch_region            = null
     cloudwatch_secret_access_key = null
-    datadog_api_key              = null
-    datadog_region               = "us1"
-    grafana_endpoint             = null
-    grafana_password             = null
-    grafana_user                 = null
-    splunk_hecendpoint           = null
-    splunk_token                 = null
+
+    datadog_api_key = null
+    datadog_region  = "us1"
+
+    elasticsearch_endpoint = null
+    elasticsearch_password = null
+
+    grafana_endpoint = null
+    grafana_password = null
+    grafana_user     = null
+
+    http_basic_password = null
+    http_basic_user     = null
+    http_bearer_token   = null
+    http_codec          = null
+    http_compression    = null
+    http_headers        = null
+    http_method         = null
+    http_payload_prefix = null
+    http_payload_suffix = null
+    http_uri            = null
+
+    newrelic_account_id  = null
+    newrelic_license_key = null
+    newrelic_region      = null
+
+    splunk_hecendpoint = null
+    splunk_token       = null
   }
+}
+
+variable "cluster_id" {
+  type        = string
+  description = "The ID of the HCP Vault cluster."
 }
 
 variable "hvn_id" {
@@ -35,9 +91,19 @@ variable "hvn_id" {
   description = "The ID of the HVN this HCP Vault cluster is associated to."
 }
 
-variable "cluster_id" {
-  type        = string
-  description = "The ID of the HCP Vault cluster."
+variable "ip_allowlist" {
+  type = list(object({
+    address     = string
+    description = string
+  }))
+
+  description = "Allowed IPV4 address ranges (CIDRs) for inbound traffic. Each entry must be a unique CIDR."
+  default     = []
+
+  validation {
+    condition     = length(var.ip_allowlist) > 50
+    error_message = "`ip_allowlist` must be at most 50 entries."
+  }
 }
 
 variable "major_version_upgrade_config" {
@@ -53,33 +119,84 @@ variable "major_version_upgrade_config" {
 
 variable "metrics_config" {
   type = object({
-    enabled                      = bool
+    enabled = bool
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#cloudwatch_access_key_id
     cloudwatch_access_key_id     = optional(string)
     cloudwatch_region            = optional(string)
     cloudwatch_secret_access_key = optional(string)
-    datadog_api_key              = optional(string)
-    datadog_region               = optional(string)
-    grafana_endpoint             = optional(string)
-    grafana_password             = optional(string)
-    grafana_user                 = optional(string)
-    splunk_hecendpoint           = optional(string)
-    splunk_token                 = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#datadog_api_key
+    datadog_api_key = optional(string)
+    datadog_region  = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#elasticsearch_endpoint
+    elasticsearch_endpoint = optional(string)
+    elasticsearch_password = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#grafana_endpoint
+    grafana_endpoint = optional(string)
+    grafana_password = optional(string)
+    grafana_user     = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#http_basic_password
+    http_basic_password = optional(string)
+    http_basic_user     = optional(string)
+    http_bearer_token   = optional(string)
+    http_codec          = optional(string)
+    http_compression    = optional(bool)
+    http_headers        = optional(map(string))
+    http_method         = optional(string)
+    http_payload_prefix = optional(string)
+    http_payload_suffix = optional(string)
+    http_uri            = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#newrelic_account_id
+    newrelic_account_id  = optional(string)
+    newrelic_license_key = optional(string)
+    newrelic_region      = optional(string)
+
+    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#splunk_hecendpoint
+    splunk_hecendpoint = optional(string)
+    splunk_token       = optional(string)
   })
 
   description = "Complex Object for Metrics Configuration. Only applied on Clusters that are on a tier higher than `dev`."
 
   default = {
-    enabled                      = false
+    enabled = false
+
     cloudwatch_access_key_id     = null
     cloudwatch_region            = null
     cloudwatch_secret_access_key = null
-    datadog_api_key              = null
-    datadog_region               = "us1"
-    grafana_endpoint             = null
-    grafana_password             = null
-    grafana_user                 = null
-    splunk_hecendpoint           = null
-    splunk_token                 = null
+
+    datadog_api_key = null
+    datadog_region  = "us1"
+
+    elasticsearch_endpoint = null
+    elasticsearch_password = null
+
+    grafana_endpoint = null
+    grafana_password = null
+    grafana_user     = null
+
+    http_basic_password = null
+    http_basic_user     = null
+    http_bearer_token   = null
+    http_codec          = null
+    http_compression    = null
+    http_headers        = null
+    http_method         = null
+    http_payload_prefix = null
+    http_payload_suffix = null
+    http_uri            = null
+
+    newrelic_account_id  = null
+    newrelic_license_key = null
+    newrelic_region      = null
+
+    splunk_hecendpoint = null
+    splunk_token       = null
   }
 }
 
@@ -92,7 +209,7 @@ variable "min_vault_version" {
 }
 
 # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#paths_filter
-# and https://learn.hashicorp.com/tutorials/vault/paths-filter
+# and https://developer.hashicorp.com/vault/tutorials/enterprise/paths-filter
 variable "paths_filter" {
   type        = list(string)
   description = "The performance replication paths filter."
@@ -103,6 +220,11 @@ variable "primary_link" {
   type        = bool
   description = "The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup."
   default     = null
+}
+
+variable "project_id" {
+  type        = string
+  description = "The ID of the HCP project where the Vault cluster is located."
 }
 
 variable "proxy_endpoint" {
