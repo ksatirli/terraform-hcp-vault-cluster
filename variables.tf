@@ -101,7 +101,7 @@ variable "ip_allowlist" {
   default     = []
 
   validation {
-    condition     = length(var.ip_allowlist) > 50
+    condition     = length(var.ip_allowlist) <= 50
     error_message = "`ip_allowlist` must be at most 50 entries."
   }
 }
