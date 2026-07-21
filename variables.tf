@@ -99,9 +99,10 @@ variable "ip_allowlist" {
 
   description = "Allowed IPV4 address ranges (CIDRs) for inbound traffic. Each entry must be a unique CIDR."
   default     = []
+  nullable    = false
 
   validation {
-    condition     = length(var.ip_allowlist) > 50
+    condition     = length(var.ip_allowlist) <= 50
     error_message = "`ip_allowlist` must be at most 50 entries."
   }
 }
