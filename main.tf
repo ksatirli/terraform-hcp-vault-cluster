@@ -10,37 +10,37 @@ resource "hcp_vault_cluster" "main" {
     for_each = (var.tier != "dev" && var.audit_log_config.enabled) ? ["enabled"] : []
 
     content {
-      cloudwatch_access_key_id     = try(var.metrics_config.cloudwatch_access_key_id, null)
-      cloudwatch_region            = try(var.metrics_config.cloudwatch_region, null)
-      cloudwatch_secret_access_key = try(var.metrics_config.cloudwatch_secret_access_key, null)
+      cloudwatch_access_key_id     = try(var.audit_log_config.cloudwatch_access_key_id, null)
+      cloudwatch_region            = try(var.audit_log_config.cloudwatch_region, null)
+      cloudwatch_secret_access_key = try(var.audit_log_config.cloudwatch_secret_access_key, null)
 
-      datadog_api_key = try(var.metrics_config.datadog_api_key, null)
-      datadog_region  = try(var.metrics_config.datadog_region, "us1")
+      datadog_api_key = try(var.audit_log_config.datadog_api_key, null)
+      datadog_region  = try(var.audit_log_config.datadog_region, "us1")
 
-      elasticsearch_endpoint = try(var.metrics_config.elasticsearch_endpoint, null)
-      elasticsearch_password = try(var.metrics_config.elasticsearch_password, null)
+      elasticsearch_endpoint = try(var.audit_log_config.elasticsearch_endpoint, null)
+      elasticsearch_password = try(var.audit_log_config.elasticsearch_password, null)
 
-      grafana_endpoint = try(var.metrics_config.grafana_endpoint, null)
-      grafana_password = try(var.metrics_config.grafana_password, null)
-      grafana_user     = try(var.metrics_config.grafana_user, null)
+      grafana_endpoint = try(var.audit_log_config.grafana_endpoint, null)
+      grafana_password = try(var.audit_log_config.grafana_password, null)
+      grafana_user     = try(var.audit_log_config.grafana_user, null)
 
-      http_basic_password = try(var.metrics_config.http_basic_password, null)
-      http_basic_user     = try(var.metrics_config.http_basic_user, null)
-      http_bearer_token   = try(var.metrics_config.http_bearer_token, null)
-      http_codec          = try(var.metrics_config.http_codec, null)
-      http_compression    = try(var.metrics_config.http_compression, null)
-      http_headers        = try(var.metrics_config.http_headers, null)
-      http_method         = try(var.metrics_config.http_method, null)
-      http_payload_prefix = try(var.metrics_config.http_payload_prefix, null)
-      http_payload_suffix = try(var.metrics_config.http_payload_suffix, null)
-      http_uri            = try(var.metrics_config.http_uri, null)
+      http_basic_password = try(var.audit_log_config.http_basic_password, null)
+      http_basic_user     = try(var.audit_log_config.http_basic_user, null)
+      http_bearer_token   = try(var.audit_log_config.http_bearer_token, null)
+      http_codec          = try(var.audit_log_config.http_codec, null)
+      http_compression    = try(var.audit_log_config.http_compression, null)
+      http_headers        = try(var.audit_log_config.http_headers, null)
+      http_method         = try(var.audit_log_config.http_method, null)
+      http_payload_prefix = try(var.audit_log_config.http_payload_prefix, null)
+      http_payload_suffix = try(var.audit_log_config.http_payload_suffix, null)
+      http_uri            = try(var.audit_log_config.http_uri, null)
 
-      newrelic_account_id  = try(var.metrics_config.newrelic_account_id)
-      newrelic_license_key = try(var.metrics_config.newrelic_license_key)
-      newrelic_region      = try(var.metrics_config.newrelic_region, "US")
+      newrelic_account_id  = try(var.audit_log_config.newrelic_account_id)
+      newrelic_license_key = try(var.audit_log_config.newrelic_license_key)
+      newrelic_region      = try(var.audit_log_config.newrelic_region, "US")
 
-      splunk_hecendpoint = try(var.metrics_config.splunk_hecendpoint, null)
-      splunk_token       = try(var.metrics_config.splunk_token, null)
+      splunk_hecendpoint = try(var.audit_log_config.splunk_hecendpoint, null)
+      splunk_token       = try(var.audit_log_config.splunk_token, null)
     }
   }
 
