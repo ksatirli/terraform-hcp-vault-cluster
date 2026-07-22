@@ -35,8 +35,8 @@ resource "hcp_vault_cluster" "main" {
       http_payload_suffix = try(var.audit_log_config.http_payload_suffix, null)
       http_uri            = try(var.audit_log_config.http_uri, null)
 
-      newrelic_account_id  = try(var.audit_log_config.newrelic_account_id)
-      newrelic_license_key = try(var.audit_log_config.newrelic_license_key)
+      newrelic_account_id  = try(var.audit_log_config.newrelic_account_id, null)
+      newrelic_license_key = try(var.audit_log_config.newrelic_license_key, null)
       newrelic_region      = try(var.audit_log_config.newrelic_region, "US")
 
       splunk_hecendpoint = try(var.audit_log_config.splunk_hecendpoint, null)
@@ -100,8 +100,8 @@ resource "hcp_vault_cluster" "main" {
       http_payload_suffix = try(var.metrics_config.http_payload_suffix, null)
       http_uri            = try(var.metrics_config.http_uri, null)
 
-      newrelic_account_id  = try(var.metrics_config.newrelic_account_id)
-      newrelic_license_key = try(var.metrics_config.newrelic_license_key)
+      newrelic_account_id  = try(var.metrics_config.newrelic_account_id, null)
+      newrelic_license_key = try(var.metrics_config.newrelic_license_key, null)
       newrelic_region      = try(var.metrics_config.newrelic_region, "US")
 
       splunk_hecendpoint = try(var.metrics_config.splunk_hecendpoint, null)
