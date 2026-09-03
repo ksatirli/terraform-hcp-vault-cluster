@@ -1,9 +1,9 @@
-# see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster
+# see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster
 resource "hcp_vault_cluster" "main" {
   cluster_id = var.cluster_id
   hvn_id     = var.hvn_id
 
-  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#audit_log_config
+  # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#audit_log_config
   # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "audit_log_config" {
     # Audit Log Configuration is not allowed on `dev` tier
@@ -44,7 +44,7 @@ resource "hcp_vault_cluster" "main" {
     }
   }
 
-  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#ip_allowlist
+  # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#ip_allowlist
   dynamic "ip_allowlist" {
     for_each = var.ip_allowlist
 
@@ -54,7 +54,7 @@ resource "hcp_vault_cluster" "main" {
     }
   }
 
-  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#nestedblock--major_version_upgrade_config
+  # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#nestedblock--major_version_upgrade_config
   dynamic "major_version_upgrade_config" {
     # Major Version Upgrade configuration may only be set on clusters of STANDARD or PLUS tier
     # see https://github.com/hashicorp/terraform-provider-hcp/search?&q=only+allowed+for+STANDARD+or+PLUS+clusters
@@ -67,7 +67,7 @@ resource "hcp_vault_cluster" "main" {
     }
   }
 
-  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#metrics_config
+  # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#metrics_config
   # and https://developer.hashicorp.com/hcp/docs/vault/logs-metrics
   # and https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks
   dynamic "metrics_config" {
@@ -111,7 +111,7 @@ resource "hcp_vault_cluster" "main" {
 
   min_vault_version = var.min_vault_version
 
-  # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#paths_filter
+  # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#paths_filter
   # and https://developer.hashicorp.com/vault/tutorials/enterprise/paths-filter
   paths_filter    = var.paths_filter
   primary_link    = var.primary_link

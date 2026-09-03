@@ -2,25 +2,25 @@ variable "audit_log_config" {
   type = object({
     enabled = bool
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#cloudwatch_access_key_id
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#cloudwatch_access_key_id
     cloudwatch_access_key_id     = optional(string)
     cloudwatch_region            = optional(string)
     cloudwatch_secret_access_key = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#datadog_api_key
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#datadog_api_key
     datadog_api_key = optional(string)
     datadog_region  = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#elasticsearch_endpoint
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#elasticsearch_endpoint
     elasticsearch_endpoint = optional(string)
     elasticsearch_password = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#grafana_endpoint
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#grafana_endpoint
     grafana_endpoint = optional(string)
     grafana_password = optional(string)
     grafana_user     = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#http_basic_password
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#http_basic_password
     http_basic_password = optional(string)
     http_basic_user     = optional(string)
     http_bearer_token   = optional(string)
@@ -32,12 +32,12 @@ variable "audit_log_config" {
     http_payload_suffix = optional(string)
     http_uri            = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#newrelic_account_id
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#newrelic_account_id
     newrelic_account_id  = optional(string)
     newrelic_license_key = optional(string)
     newrelic_region      = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#splunk_hecendpoint
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#splunk_hecendpoint
     splunk_hecendpoint = optional(string)
     splunk_token       = optional(string)
   })
@@ -122,25 +122,25 @@ variable "metrics_config" {
   type = object({
     enabled = bool
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#cloudwatch_access_key_id
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#cloudwatch_access_key_id
     cloudwatch_access_key_id     = optional(string)
     cloudwatch_region            = optional(string)
     cloudwatch_secret_access_key = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#datadog_api_key
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#datadog_api_key
     datadog_api_key = optional(string)
     datadog_region  = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#elasticsearch_endpoint
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#elasticsearch_endpoint
     elasticsearch_endpoint = optional(string)
     elasticsearch_password = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#grafana_endpoint
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#grafana_endpoint
     grafana_endpoint = optional(string)
     grafana_password = optional(string)
     grafana_user     = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#http_basic_password
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#http_basic_password
     http_basic_password = optional(string)
     http_basic_user     = optional(string)
     http_bearer_token   = optional(string)
@@ -152,12 +152,12 @@ variable "metrics_config" {
     http_payload_suffix = optional(string)
     http_uri            = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#newrelic_account_id
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#newrelic_account_id
     newrelic_account_id  = optional(string)
     newrelic_license_key = optional(string)
     newrelic_region      = optional(string)
 
-    # see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#splunk_hecendpoint
+    # see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#splunk_hecendpoint
     splunk_hecendpoint = optional(string)
     splunk_token       = optional(string)
   })
@@ -202,14 +202,14 @@ variable "metrics_config" {
 }
 
 # HCP Vault versions trail behind CE versions of Vault for security and maintenance reasons
-# see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#schema
+# see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#schema
 variable "min_vault_version" {
   type        = string
   description = "The minimum Vault version to use when creating the cluster."
   default     = null
 }
 
-# see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#paths_filter
+# see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#paths_filter
 # and https://developer.hashicorp.com/vault/tutorials/enterprise/paths-filter
 variable "paths_filter" {
   type        = list(string)
@@ -243,7 +243,7 @@ variable "proxy_endpoint" {
   }
 }
 
-# see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#schema
+# see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#schema
 variable "public_endpoint" {
   type        = bool
   description = "Denotes that the cluster has a public endpoint."
@@ -251,7 +251,7 @@ variable "public_endpoint" {
 }
 
 # To enable Metrics support for HCP Vault Clusters, the cluster must be, at least, `standard_small`.
-# see https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster#schema
+# see https://registry.terraform.io/providers/hashicorp/hcp/0.114.0/docs/resources/vault_cluster#schema
 variable "tier" {
   type        = string
   description = "Tier of the HCP Vault cluster."

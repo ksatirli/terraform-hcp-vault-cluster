@@ -3,7 +3,7 @@ locals {
 }
 
 # get information about main subscription
-# see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription
+# see https://registry.terraform.io/providers/hashicorp/azurerm/3.107.0/docs/data-sources/subscription
 data "azurerm_subscription" "main" {
   # alternatively, request information about a different subscription
   # by uncommenting the next line and manually passing in a Subscription ID
@@ -11,7 +11,7 @@ data "azurerm_subscription" "main" {
 }
 
 # create a Resource Group for use with the HVN
-# see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
+# see https://registry.terraform.io/providers/hashicorp/azurerm/3.107.0/docs/resources/resource_group
 resource "azurerm_resource_group" "main" {
   name     = local.identifier
   location = var.location
@@ -25,7 +25,7 @@ resource "azurerm_route_table" "main" {
 
 # Set up DDoS plan; note that Azure limits the amount of plans to one per region
 # Enabling DDoS protection results in meeting Best Practices as defined by Snyk: https://snyk.io/security-rules/SNYK-CC-AZURE-516
-# see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_ddos_protection_plan
+# see https://registry.terraform.io/providers/hashicorp/azurerm/3.107.0/docs/resources/network_ddos_protection_plan
 resource "azurerm_network_ddos_protection_plan" "main" {
   location            = azurerm_resource_group.main.location
   name                = local.identifier
@@ -33,7 +33,7 @@ resource "azurerm_network_ddos_protection_plan" "main" {
 }
 
 # create virtual network for use with the HVN
-# see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
+# see https://registry.terraform.io/providers/hashicorp/azurerm/3.107.0/docs/resources/virtual_network
 resource "azurerm_virtual_network" "main" {
   address_space = [
     "10.0.0.0/16"
@@ -44,7 +44,7 @@ resource "azurerm_virtual_network" "main" {
   resource_group_name = azurerm_resource_group.main.name
 
   # Enabling DDoS protection results in meeting Best Practices as defined by Snyk: https://snyk.io/security-rules/SNYK-CC-AZURE-516
-  # see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network#ddos_protection_plan
+  # see https://registry.terraform.io/providers/hashicorp/azurerm/3.107.0/docs/resources/virtual_network#ddos_protection_plan
   ddos_protection_plan {
     id     = azurerm_network_ddos_protection_plan.main.id
     enable = true
